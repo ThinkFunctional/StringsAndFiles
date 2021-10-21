@@ -1,6 +1,6 @@
 # Name: Strings and Files Unit Test
-# Time: 10/19/2021 @ 7:31 am
-# Points: 72
+# Time: 10/21/2021 @ 11:05 am
+# Points: 76
 
 # Helper Functions
 import operator as op
@@ -178,6 +178,9 @@ to_alphanum_tc = [('tis but a scratch', 'tisbutascratch'),
                   ('!@#$%^&*()_+', ''),
                   ('   ',''),
                   ('', '')]
+is_pangram_tc = [('Waltz, nymph, for quick jigs vex bud.', True),
+                 ('Lustful dimwitted ducks roast upon a quartered fireplace of zirconium.', False),
+                 ('', False)]
 is_palindrome_tc = [('Mr. Owl Ate My Metal Worm', True),
                     ('A Man, A Plan, A Canal-Panama!', True),
                     ('Was It A Ram I Saw?', False),
@@ -215,6 +218,7 @@ bi_to_dec_tc = [('0', 0),
 pal_seq_tc = [(1, 1), (12, 33), (144, 4554), (1728, 729927)]
 des_seq_tc = [(1, '0'), (2, '10'), (9, '1113122113121113222110'),
                (15, '11131221131211132221232112111312111213111213211231132132211211131221232112111312212221121123222110')]
+pangram_count_tc = [('sentences.txt', 18)]
 
 snowflake_tc = [(4, 'F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F-F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F-F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F')]
 hilbert_tc = [(3, '+-LF+RFR+FL-F-+RF-LFL-FR+F+RF-LFL-FR+-F-LF+RFR+FL-+')]
@@ -233,6 +237,7 @@ index_first_unit = Unit(index_first, 'index_first', index_first_tc, True, False,
 index_last_unit = Unit(index_last, 'index_last', index_last_tc, True, False, eq_comp)
 strip_char_unit = Unit(strip_char, 'strip_char', strip_char_tc, True, False, eq_comp)
 to_alphanum_unit = Unit(to_alphanum, 'to_alphanum', to_alphanum_tc, False, False, eq_comp)
+is_pangram_unit = Unit(is_pangram, 'is_pangram', is_pangram_tc, False, False, eq_comp)
 is_palindrome_unit = Unit(is_palindrome, 'is_palindrome', is_palindrome_tc, False, False, eq_comp)
 is_anagram_unit = Unit(is_anagram, 'is_anagram', is_anagram_tc, True, False, eq_comp)
 caesar_cipher_unit = Unit(caesar_cipher, 'caesar_cipher', caesar_cipher_tc, True, False, eq_comp)
@@ -243,6 +248,7 @@ is_balanced_unit = Unit(is_balanced, 'is_balanced', is_balanced_tc, False, False
 bi_to_dec_unit = Unit(bi_to_dec, 'bi_to_dec', bi_to_dec_tc, False, False, eq_comp)
 pal_seq_unit = Unit(pal_seq, 'palindromic sequence', pal_seq_tc, False, False, eq_comp)
 des_seq_unit = Unit(des_seq, 'self-descriptive sequence', des_seq_tc, False, False, eq_comp)
+pangram_count_unit = Unit(pangram_count, 'pangram_count', pangram_count_tc, False, False, eq_comp)
 snowflake_unit = Unit(snowflake, 'snowflake', snowflake_tc, False, False, eq_comp)
 hilbert_unit = Unit(hilbert, 'hilbert', hilbert_tc, False, False, eq_comp)
 dragon_unit = Unit(dragon, 'dragon', dragon_tc, False, False, eq_comp)
@@ -252,10 +258,10 @@ sierpinski_tri_unit = Unit(sierpinski_tri, 'sierpinski_tri', sierpinski_tri_tc, 
 
 # Unit Test List
 units = [char_count_unit, reverse_unit, index_first_unit, index_last_unit, strip_char_unit,
-         to_alphanum_unit, is_palindrome_unit, is_anagram_unit, caesar_cipher_unit,
-         space_cull_unit, word_list_unit, pyg_latin_unit, is_balanced_unit, bi_to_dec_unit, pal_seq_unit, des_seq_unit,
-         snowflake_unit, hilbert_unit,dragon_unit, arrowhead_unit, peano_gosper_unit,
-         sierpinski_tri_unit]
+         to_alphanum_unit, is_palindrome_unit, is_pangram_unit, is_anagram_unit, caesar_cipher_unit,
+         space_cull_unit, word_list_unit, pyg_latin_unit, is_balanced_unit, bi_to_dec_unit, pal_seq_unit,
+         des_seq_unit, pangram_count_unit, snowflake_unit, hilbert_unit,dragon_unit, arrowhead_unit,
+         peano_gosper_unit, sierpinski_tri_unit]
 
 # Create Unit Test
 unit_test = UnitTest("Strings Unit Test", units)
