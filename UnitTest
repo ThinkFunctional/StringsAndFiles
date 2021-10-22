@@ -218,7 +218,7 @@ bi_to_dec_tc = [('0', 0),
 pal_seq_tc = [(1, 1), (12, 33), (144, 4554), (1728, 729927)]
 des_seq_tc = [(1, '0'), (2, '10'), (9, '1113122113121113222110'),
                (15, '11131221131211132221232112111312111213111213211231132132211211131221232112111312212221121123222110')]
-pangram_count_tc = [('sentences.txt', 18)]
+pangram_count_tc = [('pgram_file.txt', 18)]
 
 snowflake_tc = [(4, 'F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F-F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F-F-F++F-F-F-F++F-F++F-F++F-F-F-F++F-F')]
 hilbert_tc = [(3, '+-LF+RFR+FL-F-+RF-LFL-FR+F+RF-LFL-FR+-F-LF+RFR+FL-+')]
