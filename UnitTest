@@ -1,9 +1,9 @@
 # Name: Strings and Files Unit Test
-# Time: 10/22/2021 @ 9:17 am
-# Points: 76
+# Time: 10/25/2022 @ 12:45 pm
 
 # Helper Functions
 import operator as op
+import traceback
 
 eq_comp = op.__eq__
 is_comp = op.is_
@@ -114,8 +114,13 @@ class UnitTest():
                         actual_value = unit.func(*arg)
                     else:
                         actual_value = unit.func(arg) 
-                except:
-                    test_file.write("Crash! No point!\n")
+                except Exception as err:
+                    # Do not print error if function hasn't been implemented (no arguments defined but passing args error).
+					# This avoids giving students a wall of errors when starting project.
+                    if "takes 0 positional arguments but" not in str(err):
+                        # Print error to console
+                        traceback.print_exc()
+                    test_file.write("Crash! No points!\n")
                     pts_lost_dict[unit.name] += 1
                 else:
                     if not unit.is_mutator:
@@ -148,7 +153,9 @@ class UnitTest():
                     test_file.write("\nFunction \"" + name + "\", points lost " + str(pts_lost) + ".")
         else:
             test_file.write(" Perfection!")
-        test_file.write("\n\nFinal Score: " + str(self.score) + "/" + str(self.num_tests))
+        summary = "Final Score: " + str(self.score) + "/" + str(self.num_tests)
+        test_file.write("\n\n" + summary)
+        print(summary)
 
 # Test Cases (tc)
 # Format: a list of tuples where each tuple
@@ -191,6 +198,9 @@ is_anagram_tc = [(('fish', 'fish'), True),
                  (('fish', 'fishh'), False),
                  (('fishs', 'fishh'), False),
                  (('', ''), True)]
+is_int_tc = [('', False), (' ', False), ('12', True), (' 12  ', True), (' 1 2', False),
+             ('-+--12', True), ('- +--12', False), ('-+-- 12', True), ('-1+--12', False),
+             ('-+--1-2', False)]
 caesar_cipher_tc = [(('fish', 0), 'fish'),
                     (('fish', 1), 'gjti'),
                     (('fish', -1), 'ehrg'),
@@ -240,6 +250,7 @@ to_alphanum_unit = Unit(to_alphanum, 'to_alphanum', to_alphanum_tc, False, False
 is_pangram_unit = Unit(is_pangram, 'is_pangram', is_pangram_tc, False, False, eq_comp)
 is_palindrome_unit = Unit(is_palindrome, 'is_palindrome', is_palindrome_tc, False, False, eq_comp)
 is_anagram_unit = Unit(is_anagram, 'is_anagram', is_anagram_tc, True, False, eq_comp)
+is_int_unit = Unit(is_int, 'is_int', is_int_tc, False, False, eq_comp)
 caesar_cipher_unit = Unit(caesar_cipher, 'caesar_cipher', caesar_cipher_tc, True, False, eq_comp)
 space_cull_unit = Unit(space_cull, 'space_cull', space_cull_tc, False, False, eq_comp)
 word_list_unit = Unit(word_list, 'word_list', word_list_tc, False, False, elems_comp)
@@ -258,7 +269,7 @@ sierpinski_tri_unit = Unit(sierpinski_tri, 'sierpinski_tri', sierpinski_tri_tc, 
 
 # Unit Test List
 units = [char_count_unit, reverse_unit, index_first_unit, index_last_unit, strip_char_unit,
-         to_alphanum_unit, is_palindrome_unit, is_pangram_unit, is_anagram_unit, caesar_cipher_unit,
+         to_alphanum_unit, is_palindrome_unit, is_pangram_unit, is_anagram_unit, is_int_unit, caesar_cipher_unit,
          space_cull_unit, word_list_unit, pyg_latin_unit, is_balanced_unit, bi_to_dec_unit, pal_seq_unit,
          des_seq_unit, pangram_count_unit, snowflake_unit, hilbert_unit,dragon_unit, arrowhead_unit,
          peano_gosper_unit, sierpinski_tri_unit]
