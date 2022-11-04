@@ -1,5 +1,5 @@
 # Name: Strings and Files Unit Test
-# Time: 10/25/2022 @ 12:45 pm
+# Time: 11/4/2022 @ 9:29 am
 
 # Helper Functions
 import operator as op
@@ -197,6 +197,7 @@ is_anagram_tc = [(('fish', 'fish'), True),
                  (('fish', 'sifh'), True),
                  (('fish', 'fishh'), False),
                  (('fishs', 'fishh'), False),
+                 (('fish',  'fishc'), False),
                  (('', ''), True)]
 is_int_tc = [('', False), (' ', False), ('12', True), (' 12  ', True), (' 1 2', False),
              ('-+--12', True), ('- +--12', False), ('-+-- 12', True), ('-1+--12', False),
@@ -210,6 +211,7 @@ space_cull_tc = [('   tis   but     a      scratch  ', 'tis but a scratch'),
                 ('   ', ''),
                 ('', '')]
 word_list_tc = [('tis but a scratch', ['tis', 'but', 'a', 'scratch']),
+                ('tis  but   a    scratch', ['tis', 'but', 'a', 'scratch']),
                 ('   ', []),
                 ('', [])]
 pyg_latin_tc = [('fish', 'ish-fay'),
@@ -220,6 +222,7 @@ is_balanced_tc = [('(2*3)', True),
                   ('(2*3))', False),
                   (')2*3(', False),
                   ('2*3', True),
+                  ('2)3(*(5)', False),
                   ('', True)]
 bi_to_dec_tc = [('0', 0),
                 ('1', 1),
